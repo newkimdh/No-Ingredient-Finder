@@ -1,5 +1,6 @@
 package com.konkuk.no_ingredient.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자 생성
 
 public class Restaurant {
+
     @Id // 테이블의 PK
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT 연동
     private Long id;      // MySQL의 BIGINT

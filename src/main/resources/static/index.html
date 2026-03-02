@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>No-Ingredient Admin</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        section { margin-bottom: 30px; padding: 15px; border: 1px solid #ccc; }
+        input { margin-bottom: 5px; display: block; }
+    </style>
+</head>
+<body>
+<h1>🍕 No-Ingredient 식당 관리 도구</h1>
+
+<section>
+    <h3>식당 신규 등록</h3>
+    <input type="text" id="name" placeholder="식당 이름">
+    <input type="text" id="address" placeholder="주소">
+    <input type="text" id="category" placeholder="카테고리 (예: 한식)">
+    <button onclick="registerRestaurant()">등록하기</button>
+</section>
+
+<section>
+    <h3>현재 등록된 식당 <button onclick="loadRestaurants()">새로고침</button></h3>
+    <ul id="restaurant-list"></ul>
+</section>
+
+<script>
+    // [GET] 모든 식당 조회
+    function loadRestaurants() {
+        fetch('/api/restaurants') //
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById('restaurant-list');
+                list.innerHTML = '';
+                data.forEach(res => {
+                    list.innerHTML += `
+                        <li>
+                            <strong>${res.name}</strong> (${res.category}) - ${res.address}
+                            <button onclick="deleteRestaurant(${res.id})">삭제</button>
+                        </li>`;
+                });
+            });
+    }
+
+    // [POST] 식당 등록 (RequestBody 테스트)
+    function registerRestaurant() {
+        const data = {
+            name: document.getElementById('name').value,
+            address: document.getElementById('address').value,
+            category: document.getElementById('category').value
+        };
+
+        fetch('/api/restaurants', { //
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data) // JSON으로 변환해서 전송
+        }).then(() => {
+            alert('등록 완료!');
+            loadRestaurants();
+        });
+    }
+
+    // [DELETE] 식당 삭제 (PathVariable 테스트)
+    function deleteRestaurant(id) {
+        if(confirm('정말 삭제할까요?')) {
+            fetch(`/api/restaurants/${id}`, { method: 'DELETE' }) //
+                .then(() => {
+                    alert('삭제 완료!');
+                    loadRestaurants();
+                });
+        }
+    }
+
+    // 페이지 로드 시 리스트 불러오기
+    loadRestaurants();
+</script>
+</body>
+</html>
