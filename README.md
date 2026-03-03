@@ -72,3 +72,30 @@ JSON
   }
 ]
 ```
+
+## Development Status (진행 상황)
+
+현재 프로젝트는 핵심 기능 구현 단계에 있으며, 전체 로드맵의 약 50%를 소화한 상태입니다. 
+단순한 기능 구현을 넘어 서버의 동작 원리를 이해하고 코드의 품질을 높이는 과정을 병행하고 있습니다.
+
+### 완료된 항목
+- **기획 및 설계 (1주차)**
+  - [x] MVP 기능 명세 및 사용자 흐름(User Flow) 정의
+  - [x] 데이터베이스 ERD 설계 (Restaurant, Menu, Ingredient 관계 매핑)
+  - [x] Spring Boot 레이어드 아키텍처(Controller-Service-Repository) 설정
+- **핵심 로직 개발 (2주차)**
+  - [x] JPA를 활용한 도메인 엔티티(Entity) 구현 및 연관관계 설정
+  - [x] 식당, 메뉴, 재료 관리를 위한 기초 CRUD API 개발
+  - [x] `NOT IN` 쿼리를 활용한 기피 재료 제외 필터링 로직 구현 (핵심 기능)
+
+### 진행 중 및 예정 항목 (To-do)
+- **기능 고도화 및 안정화 (3주차 - 진행 중)**
+  - [ ] `@ControllerAdvice`를 활용한 전역 예외 처리(Global Exception Handling)
+  - [ ] QueryDSL 등을 활용한 다중 필터링 동적 쿼리 최적화
+  - [ ] JUnit5와 AssertJ를 이용한 비즈니스 로직 단위 테스트 작성
+- **프론트엔드 연동 (4주차)**
+  - [ ] React/Next.js 기반의 검색 및 필터링 UI 구현
+  - [ ] Axios를 이용한 비동기 API 통신 및 CORS 문제 해결
+- **배포 및 문서화 (5주차)**
+  - [ ] AWS EC2 및 Docker를 활용한 서버 배포
+  - [ ] 프로젝트 회고 및 기술 블로그(Velog) 포스팅 정리
