@@ -13,6 +13,12 @@
 
 - **Documentation**: SpringDoc OpenAPI (Swagger)
 
+## 데이터베이스 설계 (ERD)
+![ERD 설계도](./docs/No-Ingredient Finder_ERD.png)
+
+- **설계 핵심**: 
+  - ```Menu```와 ```Ingredient```를 **N:M(다대다) 관계**로 설정하고, 중간에 ```MenuIngredient``` 매핑 테이블을 두어 유연하게 재료 정보를 관리할 수 있도록 설계했습니다.
+  - '식당 - 메뉴 - 재료'로 이어지는 계층 구조를 통해 '특정 재료가 포함된 메뉴'를 가진 식당을 효율적으로 필터링할 수 있게 구성했습니다.
 
 ## Key Features
 - **N:M 관계 매핑**: 메뉴(```Menu```)와 재료(```Ingredient```) 사이의 다대다 관계를 ```@ManyToMany``` 및 매핑 테이블로 구현
