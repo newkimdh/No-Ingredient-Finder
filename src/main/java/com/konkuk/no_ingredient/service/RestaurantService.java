@@ -69,7 +69,7 @@ public class RestaurantService {
 
         // 2. 결과가 없는 경우 처리
         if (restaurants == null || restaurants.isEmpty()) {
-            throw new NoSuchElementException("조건에 맞는 식당이 없습니다.");
+            throw new NoSuchElementException("검색 조건에 맞는 식당이 없습니다. 다른 재료를 선택해 보세요!");
         }
 
         // return restaurantRepository.findByIngredientsNotIn(excludedIngredients);

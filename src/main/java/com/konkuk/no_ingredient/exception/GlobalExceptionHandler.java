@@ -14,6 +14,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoResult(NoSuchElementException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("검색 조건에 맞는 식당이 없습니다. 다른 재료를 선택해 보세요!");
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(e.getMessage());
     }
 }
